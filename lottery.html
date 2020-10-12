@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Lottery</title>
+  </head>
+  
+<body>
+  <script language="javascript">
+  // Get numbers as a string
+  number_string = prompt("Enter winning numbers separated by a space","");
+  lucky_ball = prompt("Enter lucky ball number","");
+  // Splits into array of strings separated by spaces
+  var number_split = number_string.split(" ");
+  var numbers = []
+  // Parse into integers and save as new array
+  for (i = 0; i < 5; i++) {
+    numbers[i] = parseInt(number_split[i]);
+  }
+  // Sort the numbers
+  numbers.sort();
+  // Output numbers
+  document.write("The quick pick numbers are: " + number_string + "<br />");
+  document.write("The lucky ball number is " + lucky_ball +"<br /><br />" );
+  
+  let winning_numbers = [28,30,31,42,43];
+  var winning_lucky_ball = 13;
+  document.write("The winning numbers are: ");
+  for (i = 0; i < 5; i++) {
+    document.write(winning_numbers[i]+ " ");
+  }
+  document.write("<br />");
+  document.write("The lucky ball number is " + winning_lucky_ball + "<br />");
+  document.write("<br /><br />");
+  // Find how many numbers match
+  var matched = 0;
+  for (i = 0; i < 5; i++) {
+    for (j = 0; j < 5; j++) {
+      if (numbers[i] == winning_numbers[j]) {
+        matched++; 
+      }
+    }
+  }
+  // Find if the lucky ball numbers match
+  if (lucky_ball == winning_lucky_ball) {
+    var luck = true;
+  } else {
+    var luck = false;
+  }
+  
+  // Calculate payout
+  var payout = "$0";
+  if ((matched == 0) && (luck == true)) payout = "$4";
+  else if ((matched == 1) && (luck == true)) payout = "$6";
+  else if ((matched == 2) && (luck == false)) payout = "$3";
+  else if ((matched == 2) && (luck == true)) payout = "$25";
+  else if ((matched == 3) && (luck == false)) payout = "$20";
+  else if ((matched == 3) && (luck == true)) payout = "$150";
+  else if ((matched == 4) && (luck == false)) payout = "$200";
+  else if ((matched == 4) && (luck == true)) payout = "$5000";
+  else if ((matched == 5) && (luck == false)) {
+    payout = "$25,000 a YEAR for LIFE";
+  }
+  else if (matched == 5 && luck == true) {
+    payout = "$7,000 a WEEK for LIFE";
+  }
+  // Check if to print winning message
+  if (payout != "$0") {
+    document.write("You win! ");
+  }
+  // Print payout
+  document.write("Your payout is: " + payout);
+  
+  
+  
+  </script>
+  
+</body>
